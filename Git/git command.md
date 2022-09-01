@@ -9,4 +9,4 @@ git add . : 전체 파일 수정 저장
 
 git pull . : 수정된 내용 불러올때
 
-git commit -m '수정 설명' : 바뀐 내용 깃에 추가, -m 은 설명
+git commit -m "수정 설명" : 바뀐 내용 깃에 추가, -m 은 설명
