@@ -1,4 +1,6 @@
-`<ol>,<ul>`의 자식요소는 `<li>`만 가능
+# Grouping content
+
+`<ol>,<ul>`의 자식요소는 `<li>`만 가능. 목록은 3가지 이상일때
 
 `<dl>`: 정의목록  
 `<dt>`: 정의할 용어  
@@ -25,7 +27,8 @@
 
 <hr>
 
-`<pre>` : HTML에 작성한 내용 그대로 화면에 표현. 주로 컴퓨터 코드를 표현
+`<pre>` : HTML에 작성한 내용 그대로 화면에 표현.  
+주로 컴퓨터 코드를 표현. 코드를 표현할때는 `<code>` 와 함께 사용
 
 ```javascript
 <pre>
@@ -80,12 +83,16 @@
 
 ## Entity
 
-문자를 대체하기 위한 용도
+문자를 대체하기 위한 용도  
+& 와 ; 사이에 코드 작성
 
 ex) & => `&amp;`
 
 `A&B` 에서 ' & '문자를 작성하기 위해 아래와 같이 사용
 
+```javascript
+<p> A&amp; </p>
 ```
-A&amp;B
-```
+
+코드 확인 사이트  
+https://html.spec.whatwg.org/multipage/named-characters.html#named-character-references
