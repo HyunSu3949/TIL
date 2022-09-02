@@ -1,0 +1,38 @@
+h1,
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+img {
+  display: block;
+}
+
+body {
+  height: 100vh;
+  background-image: url(images/bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.animal__text {
+  width: 300px;
+  padding: 15px;
+  box-sizing: border-box;
+  background-color: #965d30;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  box-shadow: 0px 10px 0 0px #4a260b;
+}
+
+.animal {
+  width: fit-content;
+  margin: 100px auto;
+}
+
+.animal__text__name {
+  font-size: 24px;
+}
+.animal__text {
+  color: white;
+}

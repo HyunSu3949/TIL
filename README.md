@@ -11,4 +11,3 @@
 - HTML/CSS
 - JavaScript
 - React
-- Algorithm
