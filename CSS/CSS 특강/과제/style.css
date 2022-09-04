@@ -9,16 +9,18 @@ img {
 }
 
 body {
+  box-sizing: border-box;
   height: 100vh;
   background-image: url(images/bg.png);
   background-size: cover;
   background-repeat: no-repeat;
 }
 
-.animal__text {
+.animal__textBox {
+  box-sizing: border-box;
   width: 300px;
   padding: 15px;
-  box-sizing: border-box;
+  color: white;
   background-color: #965d30;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
@@ -27,12 +29,13 @@ body {
 
 .animal {
   width: fit-content;
-  margin: 100px auto;
 }
 
-.animal__text__name {
-  font-size: 24px;
+.fox {
+  margin: auto;
+  padding: 100px 0px;
 }
-.animal__text {
-  color: white;
+
+.animal__textBox__name {
+  font-size: 24px;
 }
