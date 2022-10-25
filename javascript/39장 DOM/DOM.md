@@ -18,19 +18,19 @@ DOM은 프로퍼티와 메서드를 제공하는 트리 자료구조다
 
 12개의 노드 타입이 있다. 그중 중요한것은 4가지
 
-1. 문서 노드
+1. `문서 노드`  
    트리 최상위 루트노드로 document 객체를 가리킨다.
    전역객체 window 의 document프로퍼티에 바인딩 되어있다.
    script 가 분리되어 있어도 하나의 window를 공유하기 때문에 document 객체는 유일하다.
 
-2. 요소노드
+2. `요소노드`  
    HTML 요소를 가리키는 객체. HTML 요소 간 중첩에 의해 부자 관계를 가진다. 이를 통해 문서의 구조를 표현한다.
 
-3. 어트리뷰트 노드
+3. `어트리뷰트 노드`  
    요소의 어트리뷰트를 가리키는 객체.
    요소 노드와 연결되어있다.
 
-4. 텍스트 노드
+4. `텍스트 노드`  
    HTML 요소의 텍스트를 가리킨다. 문서의 정보를 표현.
 
 ### 39.1.3 노드 객체의 상속 구조
@@ -101,15 +101,15 @@ p::before { ... }
 
 ### 39.2.6 HTMLCollection 과 NodeList
 
-- HTMLCollection 과 NodeList는 여러개 결과값을 반환하기 위한 DOM 컬렉션 객체다.
+- `HTMLCollection` 과 `NodeList` 는 여러개 결과값을 반환하기 위한 DOM 컬렉션 객체다.
 - 둘 다 유사배열 객체이면서 이터러블이다.
 - 실시간 변화를 반영하는 살아있는 객체다.(NodeList는 경우에 따라)
 
-1. HTMLCollection
+1. HTMLCollection  
    `getElementByTagName`, `getElenemtByClassName` 메서드가 반환
    [5.html]
 
-2. NodeList
+2. NodeList  
    위와 같은 부작용을 해결하기 위해 NodeList를 반환하는 `querySelectorAll` 메서드를 사용하는 방법이 있다.(non-live객체)  
    단, childNodes 프로퍼티가 반환하는 NodeList 객체는 라이브 객체이므로 주의!
 

@@ -19,7 +19,7 @@
     <script>
       const $elems = document.getElementsByClassName("red");
       // 이 시점에 HTMLCollection 객체에는 3개의 요소 노드가 담겨 있다.
-
+      const arr = [...$elems];
       // HTMLCollection 객체의 모든 요소의 class 값을 'blue'로 변경한다.
       for (let i = 0; i < $elems.length; i++) {
         $elems[i].className = "blue";
