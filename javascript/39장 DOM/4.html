@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <ul>
+      <li class="apple">Apple</li>
+      <li class="banana">Banana</li>
+      <li class="orange">Orange</li>
+    </ul>
+
+    <input type="text" />
+    <input type="color" />
+    <input type="date" />
+    <script>
+      const $elems = document.querySelectorAll("ul > li");
+      console.log($elems); // NodeList(3) [li.apple, li.banana, li.orange]
+      $elems.forEach((elem) => {
+        elem.style.color = "red";
+      });
+
+      const input = document.querySelector("input[type=date]");
+      input.style.color = "red";
+    </script>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>설문조사</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <form id="mainform">
+      <fieldset>
+        <legend>js 스터디 모집 설문조사</legend>
+        <progress max="100" value="0" class="bar-progress"></progress>
+        <p class="msg-notice">설문지를 작성해주세요!</p>
+        <label for="q1">질문1. 무엇을 가장 배우고 싶으세요?</label>
+        <input type="text" id="q1" required />
+        <label for="q2">질문2. 시간 언제?</label>
+        <input type="text" id="q2" required />
+        <label for="q3">질문3. 몇시간 할까요?</label>
+        <input type="text" id="q3" required />
+        <label for="q4">질문4. 난이도는 어느정도?</label>
+        <input type="text" id="q4" required />
+        <label for="q5">질문5. 끝으로 하고픈말?</label>
+        <input type="text" id="q5" required />
+
+        <button type="submit">제출하기</button>
+        <button type="reset">초기화</button>
+      </fieldset>
+    </form>
+
+    <script>
+      const mainForm = document.querySelector("#mainform");
+      const progressBar = mainForm.querySelector(".bar-progress");
+      const message = mainForm.querySelector(".msg-notice");
+      const inputs = mainForm.querySelectorAll("input");
+      const btnReset = mainForm.querySelector('button[type="reset"]');
+
+      let validCounter = 0;
+      mainForm.addEventListener("keyup", () => {
+        inputs.forEach((item) => {
+          if (item.validity.valid) {
+            ++validCounter;
+            console.log(item.validity, validCounter);
+          }
+          progressBar.setAttribute(
+            "value",
+            (validCounter / inputs.length) * 100
+          );
+        });
+        validCounter = 0;
+      });
+
+      btnReset.addEventListener("click", () => {
+        inputs.forEach((item) => {
+          item.value = "";
+        });
+        progressBar.setAttribute("value", 0);
+      });
+    </script>
+  </body>
+</html>
