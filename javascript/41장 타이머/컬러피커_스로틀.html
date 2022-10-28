@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>컬러픽커</title>
+    <style>
+      section {
+        background-color: teal;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <label for="txt-color">글씨 색 선택</label
+      ><input id="txt-color" type="color" />
+      <label for="bg-color">배경 색 선택</label
+      ><input id="bg-color" type="color" />
+    </header>
+    <section class="section">
+      <p class="p">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
+        laboriosam atque illo possimus nihil labore, et consectetur facilis
+        inventore tempora temporibus officia maiores omnis voluptatum rem, ex
+        est explicabo accusantium?
+      </p>
+    </section>
+
+    <script>
+      const section = document.querySelector(".section");
+      const p = document.querySelector(".p");
+
+      const txtColor = document.querySelector("#txt-color");
+      const bgColor = document.querySelector("#bg-color");
+
+      function throttle(callback, delay) {
+        let timerId;
+
+        function makeDelay(event) {
+          if (timerId) return;
+          timerId = setTimeout(() => {
+            callback(event);
+            timerId = null;
+          }, delay);
+        }
+        return makeDelay;
+      }
+
+      function changeTxtColor(event) {
+        p.style.color = event.target.value;
+        txtEventCount++;
+      }
+
+      function changeBgColor(e) {
+        section.style.backgroundColor = e.target.value;
+        bgEventCount++;
+      }
+      let txtEventCount = 0;
+      txtColor.addEventListener("input", throttle(changeTxtColor, 70));
+
+      let bgEventCount = 0;
+      bgColor.addEventListener("input", changeBgColor);
+
+      setInterval(() => {
+        console.log(txtEventCount, bgEventCount);
+      }, 2000);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <button>click me</button>
+    <pre>디바운스 클릭 이벤트 카운터 <span class="debounce-msg">0</span></pre>
+
+    <script>
+      const $button = document.querySelector("button");
+      const $debounceMsg = document.querySelector(".debounce-msg");
+
+      function debounce(callback, delay) {
+        let timerId = 0;
+        debugger;
+        function setTimer() {
+          debugger;
+          if (timerId) clearTimeout(timerId);
+          timerId = setTimeout(callback, delay);
+        }
+        return setTimer;
+      }
+
+      function countPlus() {
+        $debounceMsg.textContent = +$debounceMsg.textContent + 1;
+      }
+
+      $button.addEventListener("click", debounce(countPlus, 6000));
+    </script>
+  </body>
+</html>
