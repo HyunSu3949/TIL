@@ -10,9 +10,7 @@
 
       function debounce(callback, delay) {
         let timerId = 0;
-        debugger;
         function setTimer() {
-          debugger;
           if (timerId) clearTimeout(timerId);
           timerId = setTimeout(callback, delay);
         }
@@ -23,7 +21,11 @@
         $debounceMsg.textContent = +$debounceMsg.textContent + 1;
       }
 
-      $button.addEventListener("click", debounce(countPlus, 5000));
+      $button.addEventListener("click", debounce(countPlus, 1000));
     </script>
   </body>
 </html>
+
+
+<h1>hello hyensu</h1>
+<h2>hello h</h2>

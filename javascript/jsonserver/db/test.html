@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>post</button>
+    <button id ='patch'>patch</button>
+    <button id ='delete'>delete</button>
+    
+    <script>
+        const button = document.querySelector('button')
+        const patch = document.querySelector('#patch')
+        const del = document.querySelector('#delete')
+
+        const patchData = {
+            productName:'바뀐 이름'
+        }
+        
+        button.addEventListener('click',()=>{
+            const postData = {
+                productName: '새로운 아이템', 
+                price: 13500, 
+                stockCount: 1000
+            }
+               
+            fetch("http://localhost:3001/product", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(postData),
+                    })
+                        .then((response) => response.json())
+                        .then((data) => console.log(data))
+        
+                })
+
+                patch.addEventListener('click',()=> {
+                    const patchData = {
+                productName: '바뀐 아이템',
+                date:'2022-1' 
+               
+            }
+
+            fetch('http://localhost:3001/product/8',{
+                method:"PATCH",
+                headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(patchData),
+            }).then(res=> res.json()).then(console.log)
+                })
+
+                del.addEventListener('click', ()=>{
+                    fetch('http://localhost:3001/product/8',{
+                method:"DELETE",
+                headers: { "Content-Type": "application/json" },
+            })
+                })
+               
+    </script>
+</body>
+</html>
