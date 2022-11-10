@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      const data = [
+        {
+          name: "Baked Salmon",
+          ingredients: [
+            { name: "연어", amount: 500, measurement: "그램" },
+            { name: "잣", amount: 1, measurement: "컵" },
+            { name: "버터 상추", amount: 2, measurement: "컵" },
+            {
+              name: "옐로 스쿼시(Yellow Squash, 호박의 한 종류)",
+              amount: 1,
+              measurement: "개",
+            },
+            { name: "올리브 오일", amount: 0.5, measurement: "컵" },
+            { name: "마늘", amount: 3, measurement: "쪽" },
+          ],
+          steps: [
+            "오븐을 180도로 예열한다.",
+            "유리 베이킹 그릇에 올리브 오일을 두른다.",
+            "연어, 마늘, 잣을 그릇에 담는다.",
+            "오븐에서 15분간 익힌다.",
+            "옐로 스쿼시를 추가하고 다시 30분간 오븐에서 익힌다.",
+            "오븐에서 그릇을 꺼내서 15분간 식힌 다음에 상추를 곁들여서 내놓는다.",
+          ],
+        },
+        {
+          name: "생선 타코",
+          ingredients: [
+            { name: "흰살생선", amount: 500, measurement: "그램" },
+            { name: "치즈", amount: 1, measurement: "컵" },
+            { name: "아이스버그 상추", amount: 2, measurement: "컵" },
+            { name: "토마토", amount: 2, measurement: "개(큰것)" },
+            { name: "또띠야", amount: 3, measurement: "개" },
+          ],
+          steps: [
+            "생선을 그릴에 익힌다.",
+            "또띠야 3장 위에 생선을 얹는다.",
+            "또띠야에 얹은 생선 위에 상추, 토마토, 치즈를 얹는다.",
+          ],
+        },
+      ];
+
+      const { useState, useCallback, memo } = React;
+
+      const useInput = (initialValue) => {
+        const [value, setValue] = useState(initialValue);
+
+        return [
+          {
+            value,
+            onChange: (e) => {
+              setValue(e.target.value);
+            }
+          },
+          setValue
+        ];
+      }
+
+      const StepItem = memo(({ step, removeStep }) => {
+        console.log(step);
+
+        return (
+          <li>
+            <span>{step}</span>
+            <button onClick={() => removeStep(step)}>X</button>
+          </li>
+        );
+      });
+
+      function Step({ steps }) {
+        const [recipeSteps, setRecipeSteps] = useState(steps);
+        // const [newStep, setNewStep] = useState("");
+        const [newStep, setNewStep] = useInput("");
+
+        const submit = (e) => {
+          e.preventDefault();
+          setRecipeSteps([...recipeSteps, newStep.value]);
+          setNewStep("");
+        }
+
+        const removeStep = useCallback((content) => {
+          setRecipeSteps(recipeSteps.filter(cont => cont !== content));
+        }, [recipeSteps]);
+
+        return (
+          <section className="instrcutions">
+            <h2>조리 절차</h2>
+
+            <ul>
+              {recipeSteps.map((step, i) => (
+                <StepItem key={i} step={step} removeStep={removeStep} />
+              ))}
+            </ul>
+
+            <form onSubmit={submit}>
+              <label>조리 절차 추가</label>
+              <input
+                {...newStep}
+                // value={newStep}
+                // onChange={(e) => setNewStep(e.target.value)}
+                type="text"
+                placeholder="절차 추가"
+                required
+              />
+              <button>Add</button>
+            </form>
+          </section>
+        );
+      }
+
+      function Recipe({ name, ingredients, steps }) {
+        return (
+          <section id={name.toLowerCase().replace(/ /g, "-")}>
+            <h1>{name}</h1>
+
+            <ul className="ingredients">
+              {ingredients.map(({ name, amount, measurement }, i) => (
+                <li key={i}>
+                  {name} - {amount}
+                  {measurement}
+                </li>
+              ))}
+            </ul>
+
+            <Step steps={steps} />
+          </section>
+        );
+      }
+
+      function Menu({ title, recipes } /* = props */) {
+        return (
+          <article>
+            <header>
+              <h1>{title}</h1>
+            </header>
+
+            <div className="recipes">
+              {recipes.map((recipe, i) => (
+                <Recipe key={i} {...recipe} />
+                // <Recipe key={i} name={recipe.name} ingredients={recipe.ingredients} steps={recipe.steps} />
+              ))}
+            </div>
+          </article>
+        );
+      }
+
+      const obj = {
+        title: "맛있는 조리법",
+        recipes: data,
+      };
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      // React.createElement(Menu, { title: "맛있는 조리법" , recipes: data });
+      // React.createElement(Menu, { ..obj });
+      // root.render(<Menu title="맛있는 조리법" recipes={data}>oneny</Menu>);
+      root.render(<Menu {...obj} />);
+    </script>
+  </body>
+</html>

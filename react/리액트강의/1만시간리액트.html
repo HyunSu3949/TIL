@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>리액트 1분만에 추가해보기!</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+      function HelloButton(props) {
+        return <button onClick={() => console.log("실행")}>Hello</button>;
+      }
+
+      function Title() {
+        return <h1>내 html에 리액트 1분만에 추가해보기!</h1>;
+      }
+
+      function Contents() {
+        return <p>단 1분만에 설치없이 리액트를 추가할 수 있다구요?</p>;
+      }
+
+      function Header() {
+        return (
+          <header>
+            <h1>
+              <img src="img/title.png" alt="1만 시간의 법칙" class="img-tit" />
+            </h1>
+            <img
+              src="img/txt_subtitle.png"
+              alt="연습은 어제의 당신보다 당신을 더 낫게 만든다."
+              class="img-txt"
+            />
+            <p class="txt-desc">
+              <strong class="tit-desc">1만 시간의 법칙</strong>은<br />
+              어떤 분야의 전문가가 되기 위해서는
+              <br />
+              최소한 1만 시간의 훈련이 필요하다는 법칙이다.
+            </p>
+          </header>
+        );
+      }
+
+      function Form() {
+        return (
+          <form class="cont-inp">
+            <p class="txt-wannabe">
+              나는
+              <input
+                id="inp-field"
+                type="text"
+                placeholder="예 프로그래밍"
+                required
+              />
+              전문가가 될 것이다.
+            </p>
+            <p>
+              그래서 앞으로 매일 하루에
+              <input id="inp-time" type="text" placeholder="예 5" required />
+              시간씩 훈련할 것이다.
+            </p>
+            <button type="button" class="btn-exc">
+              나는 며칠 동안 훈련을 해야 1만 시간이 될까?
+            </button>
+          </form>
+        );
+      }
+      function Result() {
+        return (
+          <section class="cont-result">
+            <h2 class="blind">결과 확인</h2>
+            <p>
+              당신은
+              <strong class="field-result"></strong>
+              전문가가 되기 위해서
+              <br />
+              대략
+              <strong class="time-result"></strong>일 이상 훈련하셔야 합니다! :
+            </p>
+          </section>
+        );
+      }
+
+      function Footer() {
+        return (
+          <footer class="cont-footer">
+            <img src="img/weniv.png" alt="" />
+            <p>
+              ※ 본 서비스 내 이미지 및 콘텐츠의 저작권은 주식회사 WeNiv에
+              있습니다.
+            </p>
+            <p>
+              수정 및 재배포, 무단 도용 시 법적인 문제가 발생할 수 있습니다.
+            </p>
+          </footer>
+        );
+      }
+
+      const app = (
+        <main>
+          <Header />
+          <Form />
+          <Result />
+          <Footer />
+        </main>
+      );
+
+      // DOM에 리액트 컴포넌트 랜더링하기
+      const domContainer = document.querySelector("#root");
+      ReactDOM.render(app, domContainer);
+    </script>
+  </body>
+</html>
